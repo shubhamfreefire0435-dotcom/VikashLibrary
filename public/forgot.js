@@ -1,0 +1,1 @@
+const f=document.querySelector('#f'),m=document.querySelector('#m');f.addEventListener('submit',async e=>{e.preventDefault();const r=await fetch('/api/auth/forgot-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:f.username.value})}),d=await r.json();m.textContent=d.message;m.className='message show'});

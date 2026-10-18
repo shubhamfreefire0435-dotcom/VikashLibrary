@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: vikash-library
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/status
+    disk:
+      name: vikash-library-data
+      mountPath: /opt/render/project/src/persistent
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: DATA_DIR
+        value: /opt/render/project/src/persistent
+      - key: MAX_UPLOAD_MB
+        value: "5"

@@ -1,0 +1,96 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin | VIKASH LIBRARY</title><link rel="stylesheet" href="/styles.css"></head><body><div class="dashboard"><aside class="side" id="side"><a class="brand" href="/"><span class="brand-mark">VL</span><span><strong>VIKASH LIBRARY</strong><small>ADMIN CONTROL CENTER</small></span></a><nav class="nav" id="nav"><button class="active" data-tab="overview">▦ Overview</button><button data-tab="applications">▤ Applications</button><button data-tab="students">♙ Students</button><button data-tab="staff">♧ Staff & Editors</button><button data-tab="payments">₹ Payments</button><button data-tab="seats">▦ Seat management</button><button data-tab="notices">◉ Notices & notifications</button><button data-tab="documents">▧ Documents</button><button data-tab="settings">⚙ Website settings</button><button data-tab="reports">▥ Reports</button></nav></aside><main class="dash-main"><header class="top"><div style="display:flex;gap:10px;align-items:center"><button class="btn" id="menu">☰</button><h1 id="title">Overview</h1></div><span id="who" class="hint"></span><button class="btn danger" id="logout">Logout</button></header><div class="content">
+<section class="section active" id="tab-overview"><div class="welcome"><h2>Welcome back.</h2><p>Manage your library from one place.</p></div><div class="stats"><div class="stat"><small>Applications</small><strong id="sApps">—</strong></div><div class="stat"><small>Pending</small><strong id="sPending">—</strong></div><div class="stat"><small>Students</small><strong id="sStudents">—</strong></div><div class="stat"><small>Available seats</small><strong id="sSeats">—</strong></div></div><div class="panel"><h3>Latest applications</h3><div id="latest" class="hint">Loading…</div></div></section>
+<section class="section" id="tab-applications"><div class="welcome"><h2>Applications</h2><p>Review, approve or reject requests.</p></div><div class="panel"><div class="toolbar"><input class="input" id="appSearch" placeholder="Search name, phone or application ID"><select class="input" id="appFilter"><option value="all">All statuses</option><option>pending</option><option>approved</option><option>rejected</option></select><button class="btn" id="refreshApps">Refresh</button></div><div id="apps"></div></div></section>
+<section class="section" id="tab-students"><div class="welcome"><h2>Students</h2><p>Student account records.</p></div><div class="panel"><button class="btn" id="refreshStudents">Refresh</button> <button class="btn primary" id="newStudent">Create account</button><div id="students"></div></div></section>
+<section class="section" id="tab-staff"><div class="welcome"><h2>Staff & Editors</h2><p>Manage trusted team accounts.</p></div><div class="panel"><button class="btn" id="refreshStaff">Refresh</button> <button class="btn primary" id="newStaff">Create account</button><div id="staff"></div></div></section>
+<section class="section" id="tab-seats"><div class="welcome"><h2>Seat management</h2><p>Tap a seat to change its status.</p></div><div class="panel"><h3 id="seatSummary">50 seats</h3><p class="hint">Green available · Orange occupied · Red maintenance</p><button class="btn" id="refreshSeats">Refresh</button><div id="seats" class="seat-grid"></div></div></section>
+<section class="section" id="tab-notices"><div class="welcome"><h2>Notices & notifications</h2><p>Publish text or thumbnail images on the public homepage.</p></div><div class="panel"><h3>Create notice</h3><form id="noticeForm" class="stack"><div class="row"><div class="field"><label>Title *</label><input class="input" name="title" required></div><div class="field"><label>Audience</label><select class="input" name="audience"><option value="public">Public homepage</option><option value="students">Students</option><option value="staff">Staff</option></select></div></div><div class="field"><label>Message *</label><textarea class="input" name="body" rows="3" required></textarea></div><div class="row"><div class="field"><label>Thumbnail image (optional)</label><input class="input" name="image" type="file" accept=".jpg,.jpeg,.png,.webp,.gif"></div><div class="field"><label>Publish?</label><select class="input" name="is_published"><option value="true">Publish now</option><option value="false">Save draft</option></select></div></div><div id="noticeMsg" class="message"></div><button class="btn primary">Save notice</button></form></div><div class="panel"><h3>All notices</h3><button class="btn" id="refreshNotices">Refresh</button><div id="notices"></div></div></section>
+<section class="section" id="tab-documents"><div class="welcome"><h2>Documents</h2><p>Upload library documents.</p></div><div class="panel"><form id="docForm" class="stack"><div class="field"><label>Title *</label><input class="input" name="title" required></div><div class="field"><label>Description</label><textarea class="input" name="description"></textarea></div><div class="field"><label>File (PDF/JPG/PNG/WebP, max 5 MB)</label><input class="input" name="file" type="file" required></div><button class="btn primary">Upload document</button><div id="docMsg" class="message"></div></form></div><div class="panel"><h3>Uploaded documents</h3><button class="btn" id="refreshDocs">Refresh</button><div id="docs"></div></div></section>
+<section class="section" id="tab-settings"><div class="welcome"><h2>Website settings</h2><p>Change public library details and logo.</p></div><div class="panel"><form id="settingsForm" class="stack"><div class="row"><div class="field"><label>Library name</label><input class="input" name="library_name"></div><div class="field"><label>Tagline</label><input class="input" name="tagline"></div></div><div class="row"><div class="field"><label>Phone</label><input class="input" name="phone"></div><div class="field"><label>Email</label><input class="input" name="email" type="email"></div></div><div class="field"><label>Address</label><textarea class="input" name="address"></textarea></div><div class="row"><div class="field"><label>Homepage headline</label><input class="input" name="home_title"></div><div class="field"><label>Homepage text</label><input class="input" name="home_text"></div></div><div class="field"><label>Capacity</label><input class="input" name="capacity" type="number"></div><button class="btn primary">Save settings</button><div id="settingsMsg" class="message"></div></form></div><div class="panel"><h3>Library logo</h3><form id="logoForm" class="stack"><input class="input" name="logo" type="file" accept=".jpg,.jpeg,.png,.webp" required><div><button class="btn primary">Upload / change logo</button> <button class="btn danger" type="button" id="deleteLogo">Delete logo</button></div><div id="logoMsg" class="message"></div></form></div></section>
+<section class="section" id="tab-payments">
+  <div class="welcome">
+    <h2>Payments</h2>
+    <p>Record and review student fee payments.</p>
+  </div>
+
+  <div class="panel">
+    <div class="stats">
+      <div class="stat"><small>Total collected</small><strong id="paymentCollected">₹0</strong></div>
+      <div class="stat"><small>Pending amount</small><strong id="paymentPending">₹0</strong></div>
+      <div class="stat"><small>Payment records</small><strong id="paymentCount">0</strong></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Record payment</h3>
+    <form id="paymentForm" class="stack">
+      <div class="field">
+        <label>Student</label>
+        <select class="input" name="student_id" id="paymentStudent" required></select>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Amount (₹)</label>
+          <input class="input" name="amount" type="number" min="0.01" step="0.01" required>
+        </div>
+        <div class="field">
+          <label>Payment date</label>
+          <input class="input" name="payment_date" type="date" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Method</label>
+          <select class="input" name="payment_method">
+            <option value="cash">Cash</option>
+            <option value="upi">UPI</option>
+            <option value="bank_transfer">Bank transfer</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select class="input" name="status">
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Transaction reference (optional)</label>
+        <input class="input" name="reference">
+      </div>
+      <button class="btn primary">Save payment</button>
+      <div id="paymentMsg" class="message"></div>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h3>Payment history</h3>
+    <button class="btn" id="refreshPayments" type="button">Refresh</button>
+    <div id="payments"></div>
+  </div>
+</section>
+<section class="section" id="tab-reports"><div class="welcome"><h2>Reports</h2><p>Current database totals.</p></div><div class="panel"><button class="btn" id="refreshReports">Refresh</button><div id="reports"></div></div></section>
+</div></main></div>
+<div id="toast" class="toast"></div>
+
+<div id="profileModal" class="profile-overlay" hidden>
+  <div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <div class="profile-header">
+      <div>
+        <h2 id="profileTitle">Student Profile</h2>
+        <p id="profileSubtitle" class="hint">Application details</p>
+      </div>
+      <button type="button" class="btn" id="closeProfile">Close ✕</button>
+    </div>
+
+    <div id="profileContent" class="profile-content">
+      Loading student profile...
+    </div>
+  </div>
+</div>
+
+<script src="/admin.js"></script>
+</body>
+</html>
